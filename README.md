@@ -1,24 +1,8 @@
-# README
+# Gist Good
+*Organize and search your authored and starred gists.*
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## rails stuff
+This project is made with **ruby 2.5** and **rails 5.2**. Will use devise to integrate with the github login api (*for more go to the [#1 issue](https://github.com/graciano/gist-good/issues/1)*). Database creation and configuration is the default for the current rails version, please refer to the [rails guide](https://guides.rubyonrails.org/). Eventually I'll add [rspec](http://rspec.info/documentation/) for testing.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Contributing
+Please be nice to people, don't use hate speech, call people by their right pronoun, etc ;)
