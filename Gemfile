@@ -64,3 +64,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'omniauth-github'
 gem "octokit", "~> 4.0"
+gem 'bootstrap'
+gem 'jquery-rails'
+gem 'sprockets-rails'

@@ -7,4 +7,8 @@ class  DashboardController < ApplicationController
     @user_name = current_user.github_login
     @gists = Octokit.gists(@user_name)
   end
+
+  def show_gist
+    @gist = Octokit.gist(params[:id])
+  end
 end

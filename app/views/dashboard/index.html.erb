@@ -1,8 +1,8 @@
-<h1><%= @user_name %></h1>
+<h1><%= @user_name %>'s Gists</h1>
 <hr>
 <% @gists.each do |g| %>
   <% html_url = g.html_url %>
   <% g.files.each do |f| %>
-    <p><%= link_to(f[0], html_url) %></p>
+    <p><%= link_to(f[0], show_gist_path(g.id)) %></p>
   <% end %>
 <% end %>

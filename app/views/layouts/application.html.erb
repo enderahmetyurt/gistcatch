@@ -10,13 +10,17 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-    <% else %>
-      <li><%= link_to 'Sign in', new_user_session_path %></li>
-      <li><%= link_to 'Sign up', new_user_registration_path %></li>
-    <% end %>
+    <div class="container">
+      <div class="header clearfix">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <%= link_to "Gist Me", root_path, {class: "navbar-brand"}%>
+          <% if user_signed_in? %>
+            <span><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></span>
+          <% end %>
+        </nav>
+      </div>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
