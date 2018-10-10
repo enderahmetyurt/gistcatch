@@ -1,8 +1,12 @@
-<h1><%= @user_name %>'s Gists</h1>
+<h1>Following (<%= @following.count %>)</h1>
 <hr>
-<% @gists.each do |g| %>
-  <% html_url = g.html_url %>
-  <% g.files.each do |f| %>
-    <p><%= link_to(f[0], show_gist_path(g.id)) %></p>
+<% @following.each do |f| %>
+  <%= link_to get_follower_gists_path(f.login) do %>
+    <div class="card" style="width: 10rem; display:inline-block; margin-bottom: 10px">
+      <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
+      <div class="card-block">
+        <h5 class="card-title"><%= f.login %></h5>
+      </div>
+    </div>
   <% end %>
 <% end %>

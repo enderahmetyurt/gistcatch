@@ -1,14 +1,23 @@
 require 'octokit'
+require 'faraday-http-cache'
 
 class  DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user_name = current_user.github_login
-    @gists = Octokit.gists(@user_name)
+    stack = Faraday::RackBuilder.new do |builder|
+      builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
+      builder.use Octokit::Response::RaiseError
+      builder.adapter Faraday.default_adapter
+    end
+    Octokit.middleware = stack
+
+    client = Octokit::Client.new(user: current_user.github_login, access_token: current_user.token)
+    client.auto_paginate = true
+    @following = client.following
   end
 
-  def show_gist
-    @gist = Octokit.gist(params[:id])
+  def get_follower_gists
+    @gists = Octokit.gists(params[:login])
   end
 end

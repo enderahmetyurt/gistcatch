@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.email = auth.info.email
       user.github_login = auth.info.nickname
+      user.token = auth["credentials"]["token"]
       user.password = Devise.friendly_token[0,20]
     end
   end

@@ -1,0 +1,5 @@
+<% @gists.each do |g| %>
+  <% g.files.each do |f| %>
+    <p><%= link_to f[0], g.html_url %></p>
+  <% end %>
+<% end %>
