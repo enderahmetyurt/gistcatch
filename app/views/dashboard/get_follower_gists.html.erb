@@ -1,5 +1,14 @@
-<% @gists.each do |g| %>
-  <% g.files.each do |f| %>
-    <p><%= link_to f[0], g.html_url %></p>
-  <% end %>
+<h3><%= @owner %>'s Gists</h3>
+<br>
+<% if @gists.count == 0 %>
+  <p>No gists.</p>
+  <% else %>
+    <% @gists.each do |g| %>
+      <% g.files.each do |f| %>
+        <p><%= link_to f[0], g.html_url %></p>
+      <% end %>
+    <% end %>
 <% end %>
+
+<hr>
+<p><%= link_to "Back", dashboard_index_path %></p>

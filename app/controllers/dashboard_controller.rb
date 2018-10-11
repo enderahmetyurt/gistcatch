@@ -18,6 +18,7 @@ class  DashboardController < ApplicationController
   end
 
   def get_follower_gists
-    @gists = Octokit.gists(params[:login])
+    @owner = params[:login]
+    @gists = Octokit.gists(@owner)
   end
 end
