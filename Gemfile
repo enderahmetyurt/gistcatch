@@ -69,3 +69,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'sprockets-rails'
 gem 'faraday-http-cache'
+
+group :production do
+  gem 'pg'
+end

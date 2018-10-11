@@ -21,5 +21,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: ddjr64s8nljnp4
+  user: wghhqfbqfddxem
+  password: <%= ENV['DB_PWD'] %>
+  port: 5432
+  pool: 5
+  timeout: 5000
