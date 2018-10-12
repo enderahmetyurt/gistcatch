@@ -1,2 +1,2 @@
 # Gistcatch
-Catch the gists from Github people
+Catch gists from your Github people
