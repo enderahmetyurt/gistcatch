@@ -22,8 +22,8 @@ test:
 
 production:
   adapter: postgresql
-  database: ddjr64s8nljnp4
-  user: wghhqfbqfddxem
+  database:
+  user: 
   password: <%= ENV['DB_PWD'] %>
   port: 5432
   pool: 5
