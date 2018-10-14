@@ -5,20 +5,24 @@
  <hr>
 <div class="tab-content">
   <div id="following" class="tab-pane active">
-    <h1>Following (<%= @following.count %>)</h1>
-    <% @following.each do |f| %>
-      <%= link_to get_follower_gists_path(f.login) do %>
-        <div class="card" style="width: 10rem; display:inline-block; margin-bottom: 10px">
-          <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
-          <div class="card-block">
-            <h5 class="card-title" style="margin: 5px;"><%= f.login %></h5>
+    <h2 class="text-center">Gists that you follow</h2>
+    <br>
+    <div class="container">
+      <% @following.each do |f| %>
+        <%= link_to get_follower_gists_path(f.login) do %>
+          <div class="card" style="width: 10rem; display:inline-block; margin-bottom: 10px">
+            <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
+            <div class="card-block">
+              <h5 class="card-title" style="margin: 5px;"><%= f.login %></h5>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
   <div id="followers" class="tab-pane">
-    <h1>Followers (<%= @followers.count %>)</h1>
+    <h2 class="text-center">Gists that follow you</h2>
+    <br>
     <% @followers.each do |f| %>
       <%= link_to get_follower_gists_path(f.login) do %>
         <div class="card" style="width: 10rem; display:inline-block; margin-bottom: 10px">
