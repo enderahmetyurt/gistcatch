@@ -1,5 +1,5 @@
-require 'octokit'
-require 'faraday-http-cache'
+require "octokit"
+require "faraday-http-cache"
 
 class  DashboardController < ApplicationController
   before_action :authenticate_user!
