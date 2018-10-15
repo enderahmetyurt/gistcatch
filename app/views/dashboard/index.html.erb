@@ -15,7 +15,7 @@
     <div class="container">
       <% @following.each do |f| %>
         <%= link_to get_follower_gists_path(f.login) do %>
-          <div class="card bg-info card bg-gradient-info shadow-info border-info mb-3 text-white stampsize">
+          <div class="card bg-info bg-gradient-info shadow-info border-info mb-3 text-white stampsize">
             <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
             <div class="card-block">
               <span class="card-title"><%= f.login %></span>
@@ -33,7 +33,7 @@
         <div class="card bg-secondary mb-3 stampsize follower">
           <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
           <div class="card-block">
-            <span class="card-title""><%= f.login %></span>
+            <span class="card-title"><%= f.login %></span>
           </div>
         </div>
       <% end %>
