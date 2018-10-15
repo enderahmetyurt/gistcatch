@@ -8,19 +8,21 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <div class="container">
-      <div class="header clearfix">
+      <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <%= link_to "Gist Catch", root_path, {class: "navbar-brand"}%>
+          <%= link_to "Gist Catch", root_path, {class: "navbar-brand nav-header"}%>
           <% if user_signed_in? %>
-            <span><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></span>
+            <div class="align-right">
+              <%= link_to 'Sign out', destroy_user_session_path, {method: 'delete', class: 'btn btn-outline-secondary btn-sm'}%>
+            </div>
           <% end %>
         </nav>
-      </div>
-
-      <%= yield %>
+      </header>
+      <main role="main" class="top-gap">
+        <%= yield %>
+      </main>
     </div>
   </body>
 </html>

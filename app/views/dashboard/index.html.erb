@@ -1,19 +1,24 @@
-<ul class="nav nav-pills nav-fill">
-  <li class="nav-item active"><a data-toggle="tab" href="#following"><h1>Following (<%= @following.count %>)</h1></a></li>
-  <li class="nav-item"><a data-toggle="tab" href="#followers"><h1>Followers (<%= @followers.count %>)</h1></a></li>
+<ul class="nav nav-pills justify-content">
+  <li class="nav-item active">
+    <a data-toggle="tab" class="btn btn-info" href="#following">
+      Following  <span class="badge badge-pill badge-light"><%= @following.count %></span>
+    </a>
+    <a data-toggle="tab" class="btn btn-secondary" href="#followers">
+      Followers  <span class="badge badge-pill badge-light"><%= @followers.count %></span>
+    </a>
+  </li>
 </ul>
- <hr>
-<div class="tab-content">
+<div class="tab-content top-gap">
   <div id="following" class="tab-pane active">
-    <h2 class="text-center">Gists that you follow</h2>
+    <h2 class="text-center cyan-text">Gists from People You Follow</h2>
     <br>
     <div class="container">
       <% @following.each do |f| %>
         <%= link_to get_follower_gists_path(f.login) do %>
-          <div class="card" style="width: 10rem; display:inline-block; margin-bottom: 10px">
+          <div class="card bg-info bg-gradient-info shadow-info border-info mb-3 text-white stampsize">
             <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
             <div class="card-block">
-              <h5 class="card-title" style="margin: 5px;"><%= f.login %></h5>
+              <span class="card-title"><%= f.login %></span>
             </div>
           </div>
         <% end %>
@@ -21,14 +26,14 @@
     </div>
   </div>
   <div id="followers" class="tab-pane">
-    <h2 class="text-center">Gists that follow you</h2>
+    <h2 class="text-center grey-text">Gists from Your Followers</h2>
     <br>
     <% @followers.each do |f| %>
       <%= link_to get_follower_gists_path(f.login) do %>
-        <div class="card" style="width: 10rem; display:inline-block; margin-bottom: 10px">
+        <div class="card bg-secondary mb-3 stampsize follower">
           <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
           <div class="card-block">
-            <h5 class="card-title" style="margin: 5px;"><%= f.login %></h5>
+            <span class="card-title"><%= f.login %></span>
           </div>
         </div>
       <% end %>

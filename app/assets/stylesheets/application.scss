@@ -19,6 +19,7 @@ body {
   padding-bottom: 1rem;
   border-bottom: .05rem solid #e5e5e5;
 }
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
@@ -39,7 +40,8 @@ body {
     max-width: 46rem;
   }
 }
-.container-narrow > hr {
+
+.container-narrow>hr {
   margin: 2rem 0;
 }
 
@@ -48,6 +50,7 @@ body {
   text-align: center;
   border-bottom: .05rem solid #e5e5e5;
 }
+
 .jumbotron .btn {
   padding: .75rem 1.5rem;
   font-size: 1.5rem;
@@ -57,12 +60,14 @@ body {
 .marketing {
   margin: 3rem 0;
 }
-.marketing p + h4 {
+
+.marketing p+h4 {
   margin-top: 1.5rem;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 48em) {
+
   /* Remove the padding we set earlier */
   .header,
   .marketing,
@@ -70,12 +75,55 @@ body {
     padding-right: 0;
     padding-left: 0;
   }
+
   /* Space out the masthead */
   .header {
     margin-bottom: 2rem;
   }
+
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6c757d !important;
+
+}
+
+.stampsize {
+  width: 10rem;
+  display: inline-block;
+  margin-bottom: 15px;
+  color: white;
+  border-width: 0.2rem;
+}
+
+.card-title {
+  font-size: 0.85rem;
+  margin: 5px;
+}
+
+.cyan-text {
+  color: #17a2b8;
+}
+
+.grey-text {
+  color: #878C91;
+}
+
+.card:hover {
+  box-shadow: 0 7px 18px #cccccc;
+}
+
+.top-gap {
+  padding-top: 2rem;
+}
+
+.align-right {
+  margin-left: auto;
+  margin-right: 0;
 }
