@@ -1,14 +1,25 @@
-<h3><%= @owner %>'s Gists</h3>
-<br>
-<% if @gists.count == 0 %>
-  <p>No gists.</p>
-  <% else %>
-    <% @gists.each do |g| %>
-      <% g.files.each do |f| %>
-        <p><%= link_to f[0], g.html_url %></p>
-      <% end %>
+<div class="row">
+  <div class="col-auto mr-auto">
+    <h3><%= @owner %>'s Gists</h3>
+  </div>
+  <div class="col-auto right-gap">
+    <%= link_to "Back", dashboard_index_path, {class: 'btn btn-sm btn-outline-secondary'} %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <% if @gists.count == 0 %>
+      <div class="gistcatch-box">
+        <h6>No gists.</h6>
+      </div>
+    <% else %>
+      <ul class="list-group top-gap">
+        <% @gists.each do |g| %>
+          <% g.files.each do |f| %>
+            <li class="list-group-item"><%= link_to f[0], g.html_url,{class:'tealtext'} %></li>
+          <% end %>
+        <% end %>
     <% end %>
-<% end %>
-
-<hr>
-<p><%= link_to "Back", dashboard_index_path %></p>
+    </ul>
+  </div>
+</div>

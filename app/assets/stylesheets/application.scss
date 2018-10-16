@@ -91,7 +91,6 @@ body {
   font-size: 2rem;
   font-weight: bold;
   color: #555273 !important;
-
 }
 
 .stampsize {
@@ -115,6 +114,10 @@ body {
   color: #878C91;
 }
 
+a.tealtext {
+  color: #17a2b8;
+}
+
 .card:hover {
   box-shadow: 0 7px 18px #cccccc;
 }
@@ -123,7 +126,27 @@ body {
   padding-top: 2rem;
 }
 
+.right-gap {
+  padding-right: 2rem;
+}
+
 .align-right {
   margin-left: auto;
   margin-right: 0;
+}
+
+.gistcatch-box {
+  position: relative;
+  padding: 1rem;
+  margin: 1rem (-$grid-gutter-width / 2) 0;
+  border: solid $gray-100;
+  border-width: .2rem 0 0;
+  @include clearfix();
+
+  @include media-breakpoint-up(sm) {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: .2rem;
+  }
 }
