@@ -1,5 +1,10 @@
-# Gistcatch
+<p align="center">
+  <a href="http://www.gistcatch.com">
+    <img height="150" width="150" src="https://github.com/enderahmetyurt/gistcatch/blob/master/public/logo.png?raw=true">
+  </a>
+</p>
 
+# Gistcatch
 Catch gists from your Github followers and followings...
 
 ## Requirements
