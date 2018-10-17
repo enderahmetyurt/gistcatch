@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :dashboard
   get "get_follower_gists/:login", to: "dashboard#get_follower_gists", as: "get_follower_gists"
+  get 'gist_content(/:gistid)', to: "dashboard#gist_content", as: "gist_content"
 end

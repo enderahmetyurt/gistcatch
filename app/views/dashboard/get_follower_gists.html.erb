@@ -13,13 +13,22 @@
         <h6>No gists.</h6>
       </div>
     <% else %>
-      <ul class="list-group top-gap">
-        <% @gists.each do |g| %>
-          <% g.files.each do |f| %>
-            <li class="list-group-item"><%= link_to f[0], g.html_url,{class:'tealtext'} %></li>
+      <div id="accordion" class="top-gap">
+          <% @gists.each do |g| %>
+            <% g.files.each do |f| %>
+              <div class="card">
+                <div class="card-link" id="card<%=g.id%>">
+                    <button class="btn btn-outline-secondary col-12 text-left" data-toggle="collapse" data-target="#collapse<%=g.id%>" aria-expanded="true" aria-controls="collapse<%=g.id%>" ><%= f[0]%>
+                    <%= link_to "", {controller: "dashboard", action: "gist_content", id: g.id, remote: true} %>
+                  </button>
+                </div>
+                <div id="collapse<%=g.id%>" class="collapse" aria-labelledby="<%=g.id%>" data-parent="#accordion">
+                  <div id="cardcontent<%=g.id%>" class="card-body"></div>
+                </div>
+              </div>
           <% end %>
         <% end %>
-    <% end %>
-    </ul>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,0 +1,2 @@
+<% file_key, file_details = @gist.files.first %>
+$('<%= "#cardcontent#{@gist.id}"%>').html("<%= escape_javascript(raw file_details[:content]) %>") ;
