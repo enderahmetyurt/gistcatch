@@ -16,7 +16,7 @@
       <div id="accordion" class="top-gap">
           <% @gists.each do |g| %>
             <% g.files.each do |f| %>
-              <div class="card">
+              <div class="card" style="margin-bottom: 10px;">
                 <div class="card-link" id="card<%=g.id%>">
                     <button class="btn btn-outline-secondary col-12 text-left" data-toggle="collapse" data-target="#collapse<%=g.id%>" aria-expanded="true" aria-controls="collapse<%=g.id%>" ><%= f[0]%>
                     <%= link_to "", {controller: "dashboard", action: "gist_content", id: g.id, remote: true} %>
