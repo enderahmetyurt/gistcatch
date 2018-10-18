@@ -14,6 +14,7 @@ class  DashboardController < ApplicationController
 
     client = Octokit::Client.new(user: current_user.github_login, access_token: current_user.token)
     client.auto_paginate = true
+
     @following = client.following
     @followers = client.followers
   end
@@ -21,5 +22,13 @@ class  DashboardController < ApplicationController
   def get_follower_gists
     @owner = params[:login]
     @gists = Octokit.gists(@owner)
+  end
+
+  def gist_content
+    @gist = Octokit.gist(params[:id])
+    respond_to do |format|
+      format.html { redirect_to @gist.url }
+      format.js
+    end
   end
 end
