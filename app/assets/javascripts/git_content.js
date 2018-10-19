@@ -1,3 +1,4 @@
 $(document).on("click", "button", function () {
-  this.firstElementChild.click();
+  if ($(this).attr("aria-expanded") == "true")
+    this.firstElementChild.click();
 });
