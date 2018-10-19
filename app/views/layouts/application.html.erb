@@ -7,20 +7,21 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <%= favicon_link_tag  %>
   </head>
   <body>
     <div class="container">
       <header>
+        <% if user_signed_in? %>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <%= image_tag "logo_transparent_new.png", width: 50, style: "margin-right: 10px;" %>
           <%= link_to "Gist Catch", root_path, {class: "navbar-brand nav-header"}%>
-          <% if user_signed_in? %>
-            <div class="align-right">
-              <%= link_to 'Sign out', destroy_user_session_path, {method: 'delete', class: 'btn btn-outline-secondary btn-sm'}%>
-            </div>
-          <% end %>
+          <div class="align-right">
+            <%= link_to 'Sign out', destroy_user_session_path, {method: 'delete', class: 'btn btn-outline-secondary btn-sm'}%>
+          </div>
         </nav>
+        <% end %>
       </header>
       <main role="main" class="top-gap">
         <%= yield %>

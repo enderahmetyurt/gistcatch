@@ -1,5 +1,11 @@
 <div class="jumbotron">
-  <h1 class="display-3">Your Following's Gists</h1>
-  <p class="lead">You can reach your following's Gists</p>
-  <p><%= link_to "Sign in with Github", omniauth_authorize_path(:user, "github"), {class: "btn btn-lg btn-success", role: "button"} %></p>
+  <%= image_tag "logo_transparent_new.png", width: 400, style: "margin-right: 10px;" %>
+  <h1 class="display-3">Your Gist Friend</h1>
+  <p class="lead">Can help you to manage your Gists out of Gist</p>
+  <p><%= link_to omniauth_authorize_path(:user, "github"), {class: "btn btn-success", role: "button"} do%>
+      <i class="fab fa-github"></i> Sign in with Github
+    <% end %>
+  </p>
 </div>
+
+
