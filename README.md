@@ -24,7 +24,16 @@ git clone git@github.com:enderahmetyurt/gistcatch.git && cd gistcatch
 
 Step 2: Install dependencies with `bundle install`
 
-Step 3: Create and migrate database `rails db:create db:migrate`
+Step 3: Configure your database
+
+```
+cp config/database.yml.example config/database.yml
+vim config/database.yml # or leave it to use sqlite3 for development
+```
+
+Step 4: Create your own [GitHub App](https://github.com/settings/applications/new) and create `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` environment variables.
+
+Step 5: Create and migrate database `rails db:create db:migrate`
 
 ### docker-compose
 
