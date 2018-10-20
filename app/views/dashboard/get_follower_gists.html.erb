@@ -16,11 +16,24 @@
       <div id="accordion" class="top-gap">
           <% @gists.each do |g| %>
             <% g.files.each do |f| %>
-              <div class="card" style="margin-bottom: 10px;">
-                <div class="card-link" id="card<%=g.id%>">
-                    <button class="btn btn-outline-secondary col-12 text-left" data-toggle="collapse" data-target="#collapse<%=g.id%>" aria-expanded="true" aria-controls="collapse<%=g.id%>" ><%= f[0]%>
-                    <%= link_to "", {controller: "dashboard", action: "gist_content", id: g.id, remote: true} %>
-                  </button>
+              <div class="container">
+                <div class="row">
+                  <div class="col-1 card-link">
+                    <%= link_to g.starred ? unstar_gist_path(id: g.id) : star_gist_path(id: g.id), remote: true, id: "link-#{g.id}", method: :put do %>
+                    <button class="btn btn-outline-secondary col-12 text-left">
+                      <i id="icon-<%= g.id %>" class="<%= g.starred ? "fas" : "far" %> fa-star"></i>
+                    </button>
+                    <% end %>
+                  </div>
+                  <div class="col-11">
+                    <div class="card" style="margin-bottom: 10px;">
+                      <div class="card-link" id="card<%=g.id%>">
+                        <button class="btn btn-outline-secondary col-12 text-left" data-toggle="collapse" data-target="#collapse<%=g.id%>" aria-expanded="true" aria-controls="collapse<%=g.id%>" ><%= f[0]%>
+                        <%= link_to "", {controller: "dashboard", action: "gist_content", id: g.id, remote: true} %>
+                        </button>
+                        </div>
+                      </div>
+                  </div>
                 </div>
                 <div id="collapse<%=g.id%>" class="collapse" aria-labelledby="<%=g.id%>" data-parent="#accordion">
                   <div id="cardcontent<%=g.id%>" class="card-body"></div>

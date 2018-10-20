@@ -1,27 +1,18 @@
-require "octokit"
-require "faraday-http-cache"
-
 class  DashboardController < ApplicationController
+  include DashboardHelper
   before_action :authenticate_user!
 
   def index
-    stack = Faraday::RackBuilder.new do |builder|
-      builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
-      builder.use Octokit::Response::RaiseError
-      builder.adapter Faraday.default_adapter
-    end
-    Octokit.middleware = stack
-
-    client = Octokit::Client.new(user: current_user.github_login, access_token: current_user.token)
-    client.auto_paginate = true
-
-    @following = client.following
-    @followers = client.followers
+    @following = current_client.following
+    @followers = current_client.followers
   end
 
   def get_follower_gists
     @owner = params[:login]
-    @gists = Octokit.gists(@owner)
+    starred_gist_ids = current_client.starred_gists.pluck(:id)
+    @gists = Octokit.gists(@owner).each do |gist|
+      gist[:starred] = starred_gist_ids.include?(gist.id)
+    end
   end
 
   def gist_content
@@ -30,5 +21,13 @@ class  DashboardController < ApplicationController
       format.html { redirect_to @gist.url }
       format.js
     end
+  end
+
+  def star_gist
+    gist_action("star")
+  end
+
+  def unstar_gist
+    gist_action("unstar")
   end
 end

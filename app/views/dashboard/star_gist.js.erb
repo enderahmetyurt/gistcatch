@@ -1,0 +1,3 @@
+$('<%= "#icon-#{params[:id]}"%>').toggleClass('far fas');
+$('<%= "#link-#{params[:id]}"%>').attr("href", "<%= unstar_gist_path(id: params[:id]) %>");
+
