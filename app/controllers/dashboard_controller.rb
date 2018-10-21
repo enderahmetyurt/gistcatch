@@ -13,6 +13,8 @@ class  DashboardController < ApplicationController
     @gists = Octokit.gists(@owner).each do |gist|
       gist[:starred] = starred_gist_ids.include?(gist.id)
     end
+
+    @gists = @gists.partition { |v| v.starred == true }.flatten
   end
 
   def gist_content
