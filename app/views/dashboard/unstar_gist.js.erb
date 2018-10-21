@@ -1,0 +1,2 @@
+$('<%= "#icon-#{params[:id]}"%>').toggleClass('fas far');
+$('<%= "#link-#{params[:id]}"%>').attr("href", "<%= star_gist_path(id: params[:id]) %>");
