@@ -5,7 +5,7 @@
 </p>
 
 # Gistcatch
-Your Gist Friend, Can help you to manage your Gists out of Gist
+Your Gist Friend, can help you to manage your Gists out of Gist
 
 ## Requirements
 
