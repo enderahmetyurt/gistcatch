@@ -5,7 +5,7 @@
 </p>
 
 # Gistcatch
-Catch gists from your Github followers and followings...
+Your Gist Friend, Can help you to manage your Gists out of Gist
 
 ## Requirements
 
