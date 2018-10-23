@@ -7,7 +7,7 @@ class  DashboardController < ApplicationController
     @followers = current_client.followers
   end
 
-  def get_follower_gists
+  def get_gists
     @owner = params[:login]
     starred_gist_ids = current_client.starred_gists.pluck(:id)
     @gists = Octokit.gists(@owner).each do |gist|
