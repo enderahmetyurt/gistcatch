@@ -12,6 +12,7 @@ module KramdownHelper
   end
 
   def kramdown_rouge_prepare(text, lang)
+    lang ||= "txt" # Lang shoud be nil. Set default as txt
     formatter = Rouge::Formatters::HTMLLegacy.new(line_numbers: false, css_class: "highlight",)
     if lang == "Markdown"
       sanitize Kramdown::Document.new(text, smart_quotes: "lsquo,rsquo,ldquo,rdquo",
