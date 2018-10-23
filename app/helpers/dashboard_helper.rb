@@ -28,7 +28,9 @@ module DashboardHelper
   end
 
   # checks a particular user if is being followed
+  # given a follower list
+  # much faster than doing client.follows?
   def following?(user_id, following_list)
-    following_list.any? { |f| f.id == user_id }
+    following_list.any? { |f| user_id == f.id }
   end
 end
