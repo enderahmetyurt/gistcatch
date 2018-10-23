@@ -37,7 +37,10 @@
               <span class="card-title"><%= f.login %></span>
             </div>
           </div>
-        <% end %>
+          <% if following?(f, @followers) %>
+            <div>Following</div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

@@ -26,4 +26,9 @@ module DashboardHelper
         }
       end
   end
+
+  # checks a particular user if is being followed
+  def following?(user_id, following_list)
+    following_list.any? { |f| f.id == user_id }
+  end
 end
