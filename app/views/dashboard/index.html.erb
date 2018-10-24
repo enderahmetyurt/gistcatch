@@ -28,15 +28,17 @@
   <div id="followers" class="tab-pane">
     <h2 class="text-center grey-text">Gists from Your Followers</h2>
     <br>
-    <% @followers.each do |f| %>
-      <%= link_to get_gists_path(f.login) do %>
-        <div class="card bg-secondary mb-3 stampsize follower">
-          <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
-          <div class="card-block">
-            <span class="card-title"><%= f.login %></span>
+    <div class="container">
+      <% @followers.each do |f| %>
+        <%= link_to get_gists_path(f.login) do %>
+          <div class="card bg-secondary mb-3 stampsize follower">
+            <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
+            <div class="card-block">
+              <span class="card-title"><%= f.login %></span>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
