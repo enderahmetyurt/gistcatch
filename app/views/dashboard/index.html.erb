@@ -19,7 +19,9 @@
             <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
             <div class="card-block">
               <span class="card-title"><%= f.login %></span>
-                <div class='card-status'><%= following?(f.id, @followers) ? "Follows you" : "&nbsp;"%></div>              
+              <div class='card-status'>
+                <%= following?(f.id, @followers) ? "Follows you" : "&nbsp;"%>
+              </div>
             </div>
           </div>
         <% end %>
