@@ -27,10 +27,12 @@ module DashboardHelper
       end
   end
 
-  # checks a particular user if is being followed
-  # given a follower list
+  # twitter_id = twitter user ID
+  # twitter_users = Enumerable with .id method, that returns user id
+  # Compares a twitter_id if it finds a match based on the provided twitter_users
   # much faster than doing client.follows?
-  def following?(user_id, following_list)
-    following_list.any? { |f| user_id == f.id }
+  # TODO: move to a twitter helper instead.
+  def following?(twitter_id, twitter_users)
+    twitter_users.any? { |user| twitter_id == user.id }
   end
 end
