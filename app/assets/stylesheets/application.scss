@@ -102,9 +102,17 @@ body {
   border-width: 0.2rem;
 }
 
+.card-block {
+  text-align: center;
+}
+
 .card-title {
-  font-size: 0.85rem;
+  font-size: 1.1em;
   margin: 5px;
+}
+
+.card-status {
+  font-size: 0.8em;
 }
 
 .cyan-text {
