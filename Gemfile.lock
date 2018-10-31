@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.2.1)
       actionpack (= 5.2.1)
@@ -183,6 +184,7 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.1)
       sprockets-rails (>= 2.0.0)
+    rails-assets-codemirror (5.41.0)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -308,6 +310,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.1)
+  rails-assets-codemirror!
   rouge
   rspec-rails
   rubocop
