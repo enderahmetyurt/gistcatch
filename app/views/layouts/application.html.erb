@@ -17,6 +17,7 @@
           <%= image_tag "logo_transparent_new.png", width: 50, style: "margin-right: 10px;" %>
           <%= link_to "Gist Catch", root_path, {class: "navbar-brand nav-header"}%>
           <div class="align-right">
+            <%= link_to 'My Gists', get_gists_path(current_client.login), {class: 'btn btn-outline-secondary btn-sm'}%>
             <%= link_to 'New Gist', new_gist_path, class: 'btn btn-outline-secondary btn-sm' %>
             <%= link_to 'Sign out', destroy_user_session_path, {method: 'delete', class: 'btn btn-outline-secondary btn-sm'}%>
           </div>

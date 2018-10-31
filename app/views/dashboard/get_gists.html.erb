@@ -7,6 +7,17 @@
   </div>
 </div>
 <div class="row">
+  <% if @owner == current_client.login %>
+    <div class="col-12 text-center">
+      <div class="btn-group" role="group">
+        <%= link_to "All", { filter: "all" }, class: "btn btn-secondary #{params[:filter].presence == 'all' || params[:filter].blank? ? 'active' : ''}" %>
+        <%= link_to "Public", { filter: "public" }, class: "btn btn-secondary #{params[:filter] == 'public' ? 'active' : ''}" %>
+        <%= link_to "Starred", { filter: "starred" }, class: "btn btn-secondary #{params[:filter] == 'starred' ? 'active' : ''}" %>
+        <%= link_to "Forked", { filter: "forked" }, class: "btn btn-secondary #{params[:filter] == 'forked' ? 'active' : ''}" %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="col-12">
     <% if @gists.count == 0 %>
       <div class="gistcatch-box">
