@@ -1,0 +1,19 @@
+<% type_to_alert_modifier_class = Hash.new do |hash, key| %>
+  <% if key == "alert" %>
+    <% hash[key] = "alert-danger" %>
+  <% elsif key == "notice" %>
+    <% hash[key] = "alert-primary" %>
+  <% else %>
+    <% hash[key] = "alert-#{key}" %>
+  <% end %>
+<% end %>
+
+<% flash.each do |type, message| %>
+  <div class="alert <%= type_to_alert_modifier_class[type] %> alert-dismissible fade show" role="alert">
+    <%= message %>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
