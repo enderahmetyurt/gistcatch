@@ -5,18 +5,19 @@
   function changeMode(filenameElement, editor) {
     var filename = filenameElement.value,
       extension = /.+\.([^.]+)$/.exec(filename),
+      info,
       mode,
       spec;
 
     if (extension) {
-      var info = CodeMirror.findModeByExtension(extension[1]);
+      CodeMirror.findModeByExtension(extension[1]);
 
       if (info) {
         mode = info.mode;
         spec = info.mime;
       }
     } else if (/\//.test(filename)) {
-      var info = CodeMirror.findModeByMIME(filename);
+      CodeMirror.findModeByMIME(filename);
 
       if (info) {
         mode = info.mode;
