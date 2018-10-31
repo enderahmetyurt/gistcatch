@@ -60,11 +60,11 @@ class  DashboardController < ApplicationController
 
   private
 
-  def create_gist_params
-    params.require(:gist).permit(
-      :description,
-      :public,
-      files_attributes: %i[filename content]
-    )
-  end
+    def create_gist_params
+      params.require(:gist).permit(
+        :description,
+        :public,
+        files_attributes: %i[filename content]
+      )
+    end
 end
