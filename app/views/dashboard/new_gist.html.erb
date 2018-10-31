@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-auto mr-auto">
+    <h3>New Gist</h3>
+  </div>
+  <div class="col-auto right-gap">
+    <%= link_to "Back", dashboard_index_path, {class: 'btn btn-sm btn-outline-secondary'} %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <%= form_with model: @gist, url: create_gist_path, method: :post, local: true do |form| %>
+      <%= render "model_errors", model: @gist, model_name: "gist" %>
+
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_field :description, class: "form-control", placeholder: "Gist description…" %>
+      </div>
+
+      <%= form.fields_for :files do |file_form| %>
+        <%= render "model_errors", model: file_form.object, model_name: "file" %>
+
+        <div class="form-group">
+          <%= file_form.label :filename %>
+          <%= file_form.text_field :filename, class: "form-control", placeholder: "Filename including extension…" %>
+        </div>
+
+        <div class="form-group">
+          <%= file_form.label :content %>
+          <%= file_form.text_area :content, class: "form-control", rows: 15 %>
+        </div>
+      <% end %>
+
+      <div class="form-check">
+        <%= form.check_box :public, class: "form-check-input" %>
+        <%= form.label :public, "Create public gist", class: "form-check-label" %>
+      </div>
+
+      <div class="row">
+        <div class="col-auto mr-auto"></div>
+        <div class="col-auto right-gap">
+          <%= form.submit "Create", class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
