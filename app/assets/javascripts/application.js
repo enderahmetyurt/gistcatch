@@ -16,5 +16,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+
 //= require codemirror
+//= require codemirror/meta
+//= require codemirror/loadmode
+//= require codemirror/multiplex
+
 //= require_tree .
