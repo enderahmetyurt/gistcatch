@@ -3,9 +3,12 @@
 
   // Based in this example: https://codemirror.net/demo/loadmode.html
   function changeMode(filenameElement, editor) {
-    var filename = filenameElement.value, extension, mode, spec;
+    var filename = filenameElement.value,
+      extension = /.+\.([^.]+)$/.exec(filename),
+      mode,
+      spec;
 
-    if (extension = /.+\.([^.]+)$/.exec(filename)) {
+    if (extension) {
       var info = CodeMirror.findModeByExtension(extension[1]);
 
       if (info) {
