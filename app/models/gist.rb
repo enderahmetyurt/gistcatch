@@ -45,7 +45,7 @@ class Gist
 
     def format_files
       files.reduce({}) do |memo, file|
-        memo[file.filename] = file.content
+        memo[file.filename] = { content: file.content }
         memo
       end
     end
