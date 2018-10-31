@@ -21,5 +21,6 @@
 //= require codemirror/meta
 //= require codemirror/loadmode
 //= require codemirror/multiplex
+//= require codemirror_toggle
 
 //= require_tree .

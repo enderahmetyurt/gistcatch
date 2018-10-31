@@ -19,14 +19,22 @@
       <%= form.fields_for :files do |file_form| %>
         <%= render "model_errors", model: file_form.object, model_name: "file" %>
 
-        <div class="form-group">
-          <%= file_form.label :filename %>
-          <%= file_form.text_field :filename, class: "form-control", placeholder: "Filename including extension…" %>
-        </div>
+        <div data-codemirror="wrapper">
+          <div class="form-group">
+            <%= file_form.label :filename %>
 
-        <div class="form-group">
-          <%= file_form.label :content %>
-          <%= file_form.text_area :content, class: "form-control", rows: 15 %>
+            <div class="input-group">
+              <%= file_form.text_field :filename, class: "form-control", placeholder: "Filename including extension…", data: { codemirror: "filename" } %>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" data-codemirror="update-button">Update highlight</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= file_form.label :content %>
+            <%= file_form.text_area :content, class: "form-control", rows: 15, data: { toggle: "codemirror" } %>
+          </div>
         </div>
       <% end %>
 
