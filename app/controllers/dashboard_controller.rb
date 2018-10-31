@@ -32,4 +32,39 @@ class  DashboardController < ApplicationController
   def unstar_gist
     gist_action("unstar")
   end
+
+  def new_gist
+    @gist = Gist.new
+    @gist.build_file
+  end
+
+  def create_gist
+    @gist = Gist.new create_gist_params
+
+    if @gist.valid?
+      resource_response = current_client.create_gist @gist.create_payload
+
+      if current_client.last_response.status == 201
+        flash[:success] = <<~TXT.squish
+          The gist was successfully created at #{resource_response[:html_url]}
+        TXT
+        redirect_to root_path
+      else
+        flash[:danger] = "We couldn't create the gist."
+        render :new_gist
+      end
+    else
+      render :new_gist
+    end
+  end
+
+  private
+
+  def create_gist_params
+    params.require(:gist).permit(
+      :description,
+      :public,
+      files_attributes: %i[filename content]
+    )
+  end
 end
