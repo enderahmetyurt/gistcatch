@@ -47,6 +47,10 @@ class  DashboardController < ApplicationController
     gist_action("unstar")
   end
 
+  def delete_gist
+    gist_action("delete")
+  end
+
   def new_gist
     @gist = Gist.new
     @gist.build_file
