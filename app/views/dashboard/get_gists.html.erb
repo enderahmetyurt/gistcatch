@@ -13,7 +13,6 @@
         <%= link_to "All", { filter: "all" }, class: "btn btn-secondary #{params[:filter].presence == 'all' || params[:filter].blank? ? 'active' : ''}" %>
         <%= link_to "Public", { filter: "public" }, class: "btn btn-secondary #{params[:filter] == 'public' ? 'active' : ''}" %>
         <%= link_to "Starred", { filter: "starred" }, class: "btn btn-secondary #{params[:filter] == 'starred' ? 'active' : ''}" %>
-        <%= link_to "Forked", { filter: "forked" }, class: "btn btn-secondary #{params[:filter] == 'forked' ? 'active' : ''}" %>
       </div>
     </div>
   <% end %>
