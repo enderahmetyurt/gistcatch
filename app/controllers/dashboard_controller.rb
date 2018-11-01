@@ -9,12 +9,26 @@ class  DashboardController < ApplicationController
 
   def get_gists
     @owner = params[:login]
-    starred_gist_ids = current_client.starred_gists.pluck(:id)
-    @gists = Octokit.gists(@owner).each do |gist|
-      gist[:starred] = starred_gist_ids.include?(gist.id)
-    end
 
-    @gists = @gists.partition { |v| v.starred == true }.flatten
+    @gists =
+      if @owner == current_client.login
+        case params[:filter]
+        when "public"
+          Octokit.gists(@owner)
+        when "forked"
+          current_client.gists.each do |gist|
+            gist.forked = current_client.gist_forks(gist.id).any?
+          end.select(&:forked)
+        when "starred"
+          current_client.starred_gists.each { |gist| gist.starred = true }
+        else
+          current_client.gists
+        end
+      else
+        Octokit.gists(@owner)
+      end
+
+    @gists = star_starred_gists(@gists)
   end
 
   def gist_content
@@ -66,5 +80,13 @@ class  DashboardController < ApplicationController
         :public,
         files_attributes: %i[filename content]
       )
+    end
+
+    def star_starred_gists(gists)
+      current_client_starred_gist_ids = current_client.starred_gists.pluck(:id)
+
+      gists.each do |gist|
+        gist.starred = current_client_starred_gist_ids.include?(gist.id)
+      end.partition(&:starred).flatten
     end
 end
