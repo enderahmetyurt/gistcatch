@@ -4,11 +4,18 @@ module KramdownHelper
 
   def format_collection(content_collection)
     filecontent_html = ""
-    content_collection.each do |content|
-      f_key, f_details = content
-      filecontent_html << "<h5>#{f_key}</h5><hr><div>#{kramdown_rouge_prepare(f_details[:content], f_details[:language])}</div>"
+    content_collection.each do |filename, details|
+      filecontent_html << "<h5>#{filename}</h5><hr><div>#{file_preview(details)}</div>"
     end
     filecontent_html
+  end
+
+  def file_preview(details)
+    if details[:type] =~ /image/
+      image_tag(details[:raw_url], alt: details[:filename])
+    else
+      kramdown_rouge_prepare(details[:content], details[:language])
+    end
   end
 
   def kramdown_rouge_prepare(text, lang)
