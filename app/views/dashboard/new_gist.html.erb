@@ -16,27 +16,25 @@
         <%= form.text_field :description, class: "form-control", placeholder: "Gist description…" %>
       </div>
 
-      <%= form.fields_for :files do |file_form| %>
-        <%= render "model_errors", model: file_form.object, model_name: "file" %>
-
-        <div class="form-group">
-          <%= file_form.label :filename %>
-          <%= file_form.text_field :filename, class: "form-control", placeholder: "Filename including extension…" %>
-        </div>
-
-        <div class="form-group">
-          <%= file_form.label :content %>
-          <%= file_form.text_area :content, class: "form-control", rows: 15 %>
-        </div>
-      <% end %>
+      <div id="files">
+        <%= form.fields_for :files do |file_form| %>
+          <%= render "file_fields", f: file_form %>
+        <% end %>
+      </div>
 
       <div class="form-check">
         <%= form.check_box :public, class: "form-check-input" %>
         <%= form.label :public, "Create public gist", class: "form-check-label" %>
       </div>
 
-      <div class="row">
-        <div class="col-auto mr-auto"></div>
+      <div class="row mt-3">
+        <div class="col-auto mr-auto">
+          <%= link_to_add_association "Add File", form, :files,
+            class: "btn btn-outline-secondary",
+            "data-association-insertion-node" => "#files",
+            "data-association-insertion-method" => "append"
+          %>
+        </div>
         <div class="col-auto right-gap">
           <%= form.submit "Create", class: "btn btn-outline-primary" %>
         </div>

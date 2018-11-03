@@ -7,26 +7,38 @@ class Gist
     attr_accessor :filename, :content
 
     validates :content, presence: true
+
+    def new_record?
+      true
+    end
+
+    def marked_for_destruction?
+      false
+    end
+
+    def _destroy
+      false
+    end
   end
 
   attr_accessor :description, :public, :files
 
-  validates :description, presence: true
+  validates :files, presence: true
 
-  def initialize(attributes = {})
-    @files = []
-
-    super
+  def files
+    @files ||= []
   end
 
   def files_attributes=(attributes)
-    attributes.each do |index, file_params|
-      @files.push Gist::File.new(file_params)
-    end
+    @files = attributes.map do |_key, file_params|
+      next nil if file_params[:content].blank?
+
+      Gist::File.new(file_params)
+    end.compact
   end
 
   def build_file(file_attributes = {})
-    @files.push Gist::File.new(file_attributes)
+    Gist::File.new(file_attributes)
   end
 
   def valid?

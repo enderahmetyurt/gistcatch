@@ -52,8 +52,7 @@ class  DashboardController < ApplicationController
   end
 
   def new_gist
-    @gist = Gist.new
-    @gist.build_file
+    @gist = Gist.new(files: [Gist::File.new])
   end
 
   def create_gist

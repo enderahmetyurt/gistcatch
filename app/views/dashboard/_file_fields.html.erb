@@ -1,0 +1,20 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <%= f.label :filename %>
+
+    <div class="input-group">
+      <%= f.text_field :filename, class: "form-control", placeholder: "Filename including extension…" %>
+      <div class="input-group-append">
+        <% icon = capture do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+        <%= link_to_remove_association icon, f, class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control", rows: 15 %>
+  </div>
+</div>
