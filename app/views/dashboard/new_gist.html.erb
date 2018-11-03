@@ -17,8 +17,6 @@
       </div>
 
       <%= form.fields_for :files do |file_form| %>
-        <%= render "model_errors", model: file_form.object, model_name: "file" %>
-
         <div class="form-group">
           <%= file_form.label :filename %>
           <%= file_form.text_field :filename, class: "form-control", placeholder: "Filename including extension…" %>
