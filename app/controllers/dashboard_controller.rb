@@ -15,10 +15,6 @@ class  DashboardController < ApplicationController
         case params[:filter]
         when "public"
           Octokit.gists(@owner)
-        when "forked"
-          current_client.gists.each do |gist|
-            gist.forked = current_client.gist_forks(gist.id).any?
-          end.select(&:forked)
         when "starred"
           current_client.starred_gists.each { |gist| gist.starred = true }
         else
