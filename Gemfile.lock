@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/dnagir/cocoon.git
+  revision: 0a1f9804f841e8b207524da97aa0c4b23acbecb5
+  ref: 0a1f9804f841
+  specs:
+    cocoon (1.2.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -298,6 +305,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   chromedriver-helper
+  cocoon!
   coffee-rails (~> 4.2)
   devise
   faraday-http-cache
