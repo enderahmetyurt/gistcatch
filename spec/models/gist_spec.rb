@@ -53,6 +53,20 @@ describe Gist do
       expect(payload[:files]["test.rb"]).to have_key(:content)
       expect(payload[:files]["test.rb"][:content]).to eq "puts 'Hello'"
     end
+
+    it "uses 'gistfile{index}.txt when the file has no filename'" do
+      subject = described_class.new files: [
+        Gist::File.new(filename:  "", content: "1"),
+        Gist::File.new(filename:  "", content: "2")
+      ]
+
+      payload = subject.create_payload
+
+      expect(payload[:files]).to have_key("gistfile1.txt")
+      expect(payload[:files]["gistfile1.txt"][:content]).to eq "1"
+      expect(payload[:files]).to have_key("gistfile2.txt")
+      expect(payload[:files]["gistfile2.txt"][:content]).to eq "2"
+    end
   end
 end
 

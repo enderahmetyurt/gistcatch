@@ -56,8 +56,11 @@ class Gist
   private
 
     def format_files
-      files.reduce({}) do |memo, file|
+      files.each.with_index.reduce({}) do |memo, (file, index)|
+        file.filename = "gistfile#{index + 1}.txt" if file.filename.blank?
+
         memo[file.filename] = { content: file.content }
+
         memo
       end
     end
