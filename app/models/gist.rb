@@ -30,7 +30,11 @@ class Gist
   end
 
   def valid?
-    super & files.map(&:valid?).reduce(&:&)
+    is_valid = super & files.map(&:valid?).reduce(&:&)
+
+    copy_files_errors_to_gist
+
+    is_valid
   end
 
   def create_payload
@@ -47,6 +51,16 @@ class Gist
       files.reduce({}) do |memo, file|
         memo[file.filename] = { content: file.content }
         memo
+      end
+    end
+
+    def copy_files_errors_to_gist
+      files.each do |file|
+        next if file.errors.empty?
+
+        file.errors.full_messages.each do |message|
+          errors.add(:files, message.downcase)
+        end
       end
     end
 end
