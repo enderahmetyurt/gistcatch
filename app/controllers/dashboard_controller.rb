@@ -77,7 +77,7 @@ class  DashboardController < ApplicationController
       params.require(:gist).permit(
         :description,
         :public,
-        files_attributes: %i[filename content]
+        files_attributes: %i[filename content _destroy]
       )
     end
 
