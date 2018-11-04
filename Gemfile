@@ -31,6 +31,9 @@ gem "kramdown"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Dynamic nested forms using jQuery made easy.
+gem "cocoon", github: "dnagir/cocoon", ref: "0a1f9804f841"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
 

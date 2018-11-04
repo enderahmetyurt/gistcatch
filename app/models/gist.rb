@@ -6,24 +6,37 @@ class Gist
 
     attr_accessor :filename, :content
     validates :content, presence: true
-  end
 
-  attr_accessor :description, :public, :files
+    def new_record?
+      true
+    end
 
-  def initialize(attributes = {})
-    @files = []
+    def marked_for_destruction?
+      false
+    end
 
-    super
-  end
-
-  def files_attributes=(attributes)
-    attributes.each do |index, file_params|
-      @files.push Gist::File.new(file_params)
+    def _destroy
+      false
     end
   end
 
+  attr_accessor :description, :public, :files
+  validates :files, presence: true
+
+  def files
+    @files ||= []
+  end
+
+  def files_attributes=(attributes)
+    @files = attributes.map do |_key, file_params|
+      next nil if file_params[:content].blank?
+
+      Gist::File.new(file_params)
+    end.compact
+  end
+
   def build_file(file_attributes = {})
-    @files.push Gist::File.new(file_attributes)
+    Gist::File.new(file_attributes)
   end
 
   def valid?
@@ -45,8 +58,11 @@ class Gist
   private
 
     def format_files
-      files.reduce({}) do |memo, file|
+      files.each.with_index.reduce({}) do |memo, (file, index)|
+        file.filename = "gistfile#{index + 1}.txt" if file.filename.blank?
+
         memo[file.filename] = { content: file.content }
+
         memo
       end
     end
