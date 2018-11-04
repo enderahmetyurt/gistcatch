@@ -5,7 +5,6 @@ class Gist
     include ActiveModel::Model
 
     attr_accessor :filename, :content
-
     validates :content, presence: true
 
     def new_record?
@@ -22,7 +21,6 @@ class Gist
   end
 
   attr_accessor :description, :public, :files
-
   validates :files, presence: true
 
   def files
@@ -42,7 +40,11 @@ class Gist
   end
 
   def valid?
-    super & files.map(&:valid?).reduce(&:&)
+    is_valid = super & files.map(&:valid?).reduce(&:&)
+
+    copy_files_errors_to_gist
+
+    is_valid
   end
 
   def create_payload
@@ -62,6 +64,16 @@ class Gist
         memo[file.filename] = { content: file.content }
 
         memo
+      end
+    end
+
+    def copy_files_errors_to_gist
+      files.each do |file|
+        next if file.errors.empty?
+
+        file.errors.full_messages.each do |message|
+          errors.add(:files, message.downcase)
+        end
       end
     end
 end
