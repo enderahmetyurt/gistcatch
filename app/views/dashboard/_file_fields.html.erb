@@ -4,7 +4,7 @@
 
     <div class="input-group">
       <%= f.text_field :filename, class: "form-control", placeholder: "Filename including extension…" %>
-      <div class="input-group-append">
+      <div class="input-group-append" style="display: none">
         <% icon = capture do %>
           <i class="fa fa-trash"></i>
         <% end %>
@@ -18,3 +18,22 @@
     <%= f.text_area :content, class: "form-control", rows: 15 %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.col-12').on('cocoon:after-insert', function() {
+      if ($(".form-control").length > 3) {
+        $(".input-group-append").each(function(i) {
+          $(".input-group-append")[i].style.display = "block";
+        });
+      }
+    });
+    .on("cocoon:after-remove", function() {
+      if ($(".form-control").length == 3) {
+        $(".input-group-append").each(function(i) {
+          $(".input-group-append")[i].style.display = "none";
+        });
+      }
+    });
+  });
+</script>
