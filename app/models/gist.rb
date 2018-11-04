@@ -5,13 +5,10 @@ class Gist
     include ActiveModel::Model
 
     attr_accessor :filename, :content
-
     validates :content, presence: true
   end
 
   attr_accessor :description, :public, :files
-
-  validates :description, presence: true
 
   def initialize(attributes = {})
     @files = []
