@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DashboardHelper
   def stack
     Faraday::RackBuilder.new do |builder|
@@ -20,11 +22,11 @@ module DashboardHelper
 
   def gist_action(action)
     respond_to do |format|
-        format.html { redirect_to Octokit.gist(params[:id]).url }
-        format.js {
-          render json: { error: "Couldn't #{action} the gist" } unless current_client.send("#{action}_gist", params[:id])
-        }
+      format.html { redirect_to Octokit.gist(params[:id]).url }
+      format.js do
+        render json: { error: "Couldn't #{action} the gist" } unless current_client.send("#{action}_gist", params[:id])
       end
+    end
   end
 
   # twitter_id = twitter user ID

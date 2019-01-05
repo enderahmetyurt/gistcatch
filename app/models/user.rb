@@ -1,4 +1,6 @@
-class User < ActiveRecord::Base
+# frozen_string_literal: true
+
+class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :validatable, :omniauthable
 
   def self.from_omniauth(auth)
@@ -7,7 +9,7 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.email = auth.info.email
       user.github_login = auth.info.nickname
-      user.token = auth["credentials"]["token"]
+      user.token = auth['credentials']['token']
       user.password = Devise.friendly_token[0, 20]
     end
   end

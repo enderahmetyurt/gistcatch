@@ -1,4 +1,6 @@
-class  DashboardController < ApplicationController
+# frozen_string_literal: true
+
+class DashboardController < ApplicationController
   include DashboardHelper
   before_action :authenticate_user!
 
@@ -13,9 +15,9 @@ class  DashboardController < ApplicationController
     @gists =
       if @owner == current_client.login
         case params[:filter]
-        when "public"
+        when 'public'
           Octokit.gists(@owner)
-        when "starred"
+        when 'starred'
           current_client.starred_gists.each { |gist| gist.starred = true }
         else
           current_client.gists
@@ -36,15 +38,15 @@ class  DashboardController < ApplicationController
   end
 
   def star_gist
-    gist_action("star")
+    gist_action('star')
   end
 
   def unstar_gist
-    gist_action("unstar")
+    gist_action('unstar')
   end
 
   def delete_gist
-    gist_action("delete")
+    gist_action('delete')
   end
 
   def new_gist
@@ -73,19 +75,19 @@ class  DashboardController < ApplicationController
 
   private
 
-    def create_gist_params
-      params.require(:gist).permit(
-        :description,
-        :public,
-        files_attributes: %i[filename content _destroy]
-      )
-    end
+  def create_gist_params
+    params.require(:gist).permit(
+      :description,
+      :public,
+      files_attributes: [:filename, :content, :_destroy]
+    )
+  end
 
-    def star_starred_gists(gists)
-      current_client_starred_gist_ids = current_client.starred_gists.pluck(:id)
+  def star_starred_gists(gists)
+    current_client_starred_gist_ids = current_client.starred_gists.pluck(:id)
 
-      gists.each do |gist|
-        gist.starred = current_client_starred_gist_ids.include?(gist.id)
-      end.partition(&:starred).flatten
-    end
+    gists.each do |gist|
+      gist.starred = current_client_starred_gist_ids.include?(gist.id)
+    end.partition(&:starred).flatten
+  end
 end

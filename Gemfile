@@ -57,6 +57,8 @@ group :development do
   gem "awesome_print"
 
   gem "rubocop", require: false
+  gem "guard-rspec", require: false
+  gem "guard-rubocop"
 end
 
 group :test do

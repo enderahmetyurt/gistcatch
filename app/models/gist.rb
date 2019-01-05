@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gist
   include ActiveModel::Model
 
@@ -57,23 +59,21 @@ class Gist
 
   private
 
-    def format_files
-      files.each.with_index.reduce({}) do |memo, (file, index)|
-        file.filename = "gistfile#{index + 1}.txt" if file.filename.blank?
+  def format_files
+    files.each.with_index.each_with_object({}) do |(file, index), memo|
+      file.filename = "gistfile#{index + 1}.txt" if file.filename.blank?
 
-        memo[file.filename] = { content: file.content }
+      memo[file.filename] = { content: file.content }
+    end
+  end
 
-        memo
+  def copy_files_errors_to_gist
+    files.each do |file|
+      next if file.errors.empty?
+
+      file.errors.full_messages.each do |message|
+        errors.add(:files, message.downcase)
       end
     end
-
-    def copy_files_errors_to_gist
-      files.each do |file|
-        next if file.errors.empty?
-
-        file.errors.full_messages.each do |message|
-          errors.add(:files, message.downcase)
-        end
-      end
-    end
+  end
 end
