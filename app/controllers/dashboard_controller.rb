@@ -9,19 +9,12 @@ class DashboardController < ApplicationController
     @followers = current_client.followers
   end
 
-  def get_gists
+  def gitst
     @owner = params[:login]
 
     @gists =
       if @owner == current_client.login
-        case params[:filter]
-        when 'public'
-          Octokit.gists(@owner)
-        when 'starred'
-          current_client.starred_gists.each { |gist| gist.starred = true }
-        else
-          current_client.gists
-        end
+        owner_gists(params)
       else
         Octokit.gists(@owner)
       end
@@ -89,5 +82,16 @@ class DashboardController < ApplicationController
     gists.each do |gist|
       gist.starred = current_client_starred_gist_ids.include?(gist.id)
     end.partition(&:starred).flatten
+  end
+
+  def owner_gists(params)
+    case params[:filter]
+    when 'public'
+      Octokit.gists(@owner)
+    when 'starred'
+      current_client.starred_gists.each { |gist| gist.starred = true }
+    else
+      current_client.gists
+    end
   end
 end

@@ -13,7 +13,7 @@
     <h2 class="text-center cyan-text">Gists from People You Follow</h2>
     <br>
     <% @following.each do |f| %>
-      <%= link_to get_gists_path(f.login), style: "text-decoration: none" do %>
+      <%= link_to gists_path(f.login), style: "text-decoration: none" do %>
         <div class="card bg-info bg-gradient-info shadow-info border-info mb-3 text-white stampsize">
           <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
           <div class="card-block">
@@ -30,7 +30,7 @@
     <h2 class="text-center grey-text">Gists from Your Followers</h2>
     <br>
     <% @followers.each do |f| %>
-      <%= link_to get_gists_path(f.login), style: "text-decoration: none" do %>
+      <%= link_to gists_path(f.login), style: "text-decoration: none" do %>
         <div class="card bg-secondary mb-3 stampsize follower">
           <img class="card-img-top" src="<%= f.avatar_url %>" alt="Card image cap">
           <div class="card-block">

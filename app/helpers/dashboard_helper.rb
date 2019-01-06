@@ -24,7 +24,9 @@ module DashboardHelper
     respond_to do |format|
       format.html { redirect_to Octokit.gist(params[:id]).url }
       format.js do
-        render json: { error: "Couldn't #{action} the gist" } unless current_client.send("#{action}_gist", params[:id])
+        unless current_client.send("#{action}_gist", params[:id])
+          render json: { error: "Couldn't #{action} the gist" }
+        end
       end
     end
   end
