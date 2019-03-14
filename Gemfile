@@ -78,10 +78,11 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise"
 gem "omniauth-github"
 gem "octokit", "~> 4.0"
-gem "bootstrap"
+gem "bootstrap", ">= 4.3.1"
 gem "jquery-rails"
 gem "sprockets-rails"
 gem "faraday-http-cache"
+gem "nokogiri", ">= 1.8.5"
 
 group :production do
   gem "pg"
