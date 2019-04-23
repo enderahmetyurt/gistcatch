@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://www.gistcatch.com">
+  <a href="https://gistcatch.herokuapp.com">
     <img height="150" width="150" src="https://github.com/enderahmetyurt/gistcatch/blob/master/public/logo.png?raw=true">
   </a>
 </p>
