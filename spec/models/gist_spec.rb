@@ -11,7 +11,7 @@ describe Gist do
   end
 
   describe '#valid?' do
-    it 'returns true if the gitst and its files are all valid' do
+    it 'returns true if the gists and its files are all valid' do
       subject = described_class.new description: 'description', files: [
         Gist::File.new(filename: 'test2.rb', content: "puts 'Hello'")
       ]

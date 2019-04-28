@@ -16,10 +16,6 @@ class Gist
     def marked_for_destruction?
       false
     end
-
-    def _destroy
-      false
-    end
   end
 
   attr_accessor :description, :public, :files
@@ -30,7 +26,7 @@ class Gist
   end
 
   def files_attributes=(attributes)
-    @files = attributes.map do |_key, file_params|
+    @files = attributes.map do |file_params|
       next nil if file_params[:content].blank?
 
       Gist::File.new(file_params)

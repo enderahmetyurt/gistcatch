@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
     @followers = current_client.followers
   end
 
-  def gitst
+  def gists
     @owner = params[:login]
 
     @gists =
